@@ -16,9 +16,7 @@ public class Base64Util {
     /**
      * 把字符串进行base64编码，变成字符串
      *
-     * @param data 需要编码的字符串<br/>
-     *             编码前通过字符串的getBytes进行byte转换，默认编码为系统编码<br/>
-     *             系统编码与System Property 的"file.encoding"字段相同，一般默认为UTF-8<br/>
+     * @param data 需要编码的字符串编码前通过字符串的getBytes进行byte转换，默认编码为系统编码,系统编码与System Property 的"file.encoding"字段相同，一般默认为UTF-8
      */
     public static String encode(String data) {
         if (isEmpty(data)) {

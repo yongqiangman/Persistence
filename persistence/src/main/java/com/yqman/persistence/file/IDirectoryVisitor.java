@@ -8,30 +8,38 @@ import java.util.ArrayList;
 public interface IDirectoryVisitor {
     /**
      * 当前目录中创建该文件
+     *
      * @param displayName 文件名
+     *
      * @return 返回可以访问的文件器
      */
     IFileVisitor createNewFile(String displayName) throws FileAccessErrException;
 
     /**
      * 复制文件到指定目录
+     *
      * @param sourceFile 源文件
-     * @param targetDir 目标目录
+     * @param targetDir  目标目录
+     *
      * @return 操作是否成功的标志位
      */
     boolean copyFile(IFileVisitor sourceFile, IDirectoryVisitor targetDir) throws FileAccessErrException;
 
     /**
      * 移动文件到指定目录
+     *
      * @param sourceFile 源文件
-     * @param targetDir 目标目录
+     * @param targetDir  目标目录
+     *
      * @return 操作是否成功的标志位
      */
     boolean moveFile(IFileVisitor sourceFile, IDirectoryVisitor targetDir) throws FileAccessErrException;
 
     /**
      * 当前目录下删除文件
+     *
      * @param targetFile 需要删除的文件
+     *
      * @return 操作是否成功的标志位
      */
     boolean deleteFile(IFileVisitor targetFile);

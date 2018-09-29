@@ -9,12 +9,14 @@ import java.io.OutputStream;
 public interface IFileVisitor {
     /**
      * 写字符串
+     *
      * @param isAppendMode 是否是追加到文件的末尾
      */
     void writeString(String value, boolean isAppendMode) throws FileAccessErrException;
 
     /**
      * 写字符串到新行
+     *
      * @param isAppendMode 是否是追加到文件的末尾
      */
     void writeStringNewLine(String value, boolean isAppendMode) throws FileAccessErrException;

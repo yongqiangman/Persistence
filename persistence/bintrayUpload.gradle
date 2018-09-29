@@ -1,0 +1,97 @@
+// part A:增加gradle插件和版本号
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'java'
+
+def libSiteUrl = 'https://github.com/yongqiangman/Persistence'      // 项目的主页
+def libGitUrl = 'https://github.com/yongqiangman/Persistence.git'   // Git仓库的url
+def libName = "Persistence" // 对应之前Repository创建的widget package
+def libDescription = 'Persistence for Java'
+def libGroupId = "com.yqman.persistence" // 一般使用包名
+def libVersion = "0.0.0"  // 项目版本号，每次都要修改
+version = libVersion
+// 自己项目的前缀, 对应jcenter地址为：http://jcenter.bintray.com/yqman/maven/persistence/X.X.X；
+// 对应gradle中使用：dependencies { compile 'com.yqman.persistence:Persistence:0.0.0'}
+
+// part C:javadoc和sources文件的生成
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+javadoc.failOnError = false
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar, javadocJar
+}
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id 'yongqiangman'
+            name 'yongqiangman'
+            email 'yongqiangman@gmail.com'
+        }
+    }
+
+    scm {
+        url libSiteUrl
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+            groupId libGroupId
+            artifactId libName
+            version libVersion
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', libDescription)
+                root.appendNode('name', libName)
+                root.appendNode('url', libSiteUrl)
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+// partD: 自动上传的脚本
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    publications = ['mavenJava']
+    publish = true
+    pkg {
+        repo = "maven"
+        name = libName       // project name in jcenter
+        websiteUrl = libSiteUrl
+        vcsUrl = libGitUrl
+        licenses = ["Apache-2.0"]
+        version {
+            name = libVersion
+            desc = libescription
+            released  = new Date()
+        }
+    }
+}

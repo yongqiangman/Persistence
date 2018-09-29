@@ -41,7 +41,8 @@ public class LocalFile implements IFileVisitor {
     @Override
     public void writeString(String value, boolean isAppendMode) throws FileAccessErrException {
         try {
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mFile, isAppendMode)));
+            BufferedWriter writer =
+                    new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mFile, isAppendMode)));
             writer.write(value);
             writer.close();
         } catch (FileNotFoundException e) {
@@ -54,7 +55,8 @@ public class LocalFile implements IFileVisitor {
     @Override
     public void writeStringNewLine(String value, boolean isAppendMode) throws FileAccessErrException {
         try {
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mFile, isAppendMode)));
+            BufferedWriter writer =
+                    new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mFile, isAppendMode)));
             writer.newLine();
             writer.write(value);
             writer.close();

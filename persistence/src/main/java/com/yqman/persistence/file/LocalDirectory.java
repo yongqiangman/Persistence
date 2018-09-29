@@ -12,7 +12,7 @@ public class LocalDirectory implements IDirectoryVisitor {
 
     private File mFile;
 
-    public LocalDirectory(File file) throws FileAccessErrException  {
+    public LocalDirectory(File file) throws FileAccessErrException {
         if (file.exists()) {
             if (!file.isDirectory()) {
                 throw new FileAccessErrException("file is not directory");
@@ -119,7 +119,7 @@ public class LocalDirectory implements IDirectoryVisitor {
     @Override
     public ArrayList<IFileVisitor> listFiles() {
         ArrayList<IFileVisitor> fileVisitors = new ArrayList<>();
-        for(File file: mFile.listFiles()) {
+        for (File file : mFile.listFiles()) {
             if (!file.isDirectory()) {
                 try {
                     fileVisitors.add(new LocalFile(file));
@@ -134,7 +134,7 @@ public class LocalDirectory implements IDirectoryVisitor {
     @Override
     public ArrayList<IDirectoryVisitor> listDirectories() {
         ArrayList<IDirectoryVisitor> directoryVisitors = new ArrayList<>();
-        for(File file: mFile.listFiles()) {
+        for (File file : mFile.listFiles()) {
             if (file.isDirectory()) {
                 try {
                     directoryVisitors.add(new LocalDirectory(file));
