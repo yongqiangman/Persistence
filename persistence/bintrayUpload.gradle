@@ -90,7 +90,7 @@ bintray {
         licenses = ["Apache-2.0"]
         version {
             name = libVersion
-            desc = libescription
+            desc = libDescription
             released  = new Date()
         }
     }
