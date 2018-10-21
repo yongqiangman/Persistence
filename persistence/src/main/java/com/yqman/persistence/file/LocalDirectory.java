@@ -29,14 +29,14 @@ public class LocalDirectory implements IDirectoryVisitor {
     public LocalDirectory(File file) throws FileAccessErrException {
         if (file.exists()) {
             if (!file.isDirectory()) {
-                throw new FileAccessErrException("file is not directory");
+                throw new FileAccessErrException(file.getAbsolutePath() + " is not directory");
             }
             mFile = file;
         } else {
-            if (file.getParentFile().mkdirs()) {
+            if (file.mkdirs()) {
                 mFile = file;
             } else {
-                throw new FileAccessErrException("mkdirs failed");
+                throw new FileAccessErrException(file.getAbsolutePath() + "mkdirs failed");
             }
         }
     }
