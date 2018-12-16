@@ -20,9 +20,9 @@ apply plugin: 'java'
 def libSiteUrl = 'https://github.com/yongqiangman/Persistence'      // 项目的主页
 def libGitUrl = 'https://github.com/yongqiangman/Persistence.git'   // Git仓库的url
 def libName = "Persistence" // 对应之前Repository创建的widget package
-def libDescription = 'Persistence for Java'
+def libDescription = 'Persistence for Java 0.1.0'
 def libGroupId = "com.yqman.persistence" // 一般使用包名
-def libVersion = "0.0.0"  // 项目版本号，每次都要修改
+def libVersion = "0.1.0"  // 项目版本号，每次都要修改
 version = libVersion
 // 自己项目的前缀, 对应jcenter地址为：http://jcenter.bintray.com/yqman/maven/persistence/X.X.X；
 // 对应gradle中使用：dependencies { compile 'com.yqman.persistence:Persistence:0.0.0'}
