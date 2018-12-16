@@ -35,11 +35,6 @@ public interface IFileVisitor {
      */
     void writeStringNewLine(String value, boolean isAppendMode) throws FileAccessErrException;
 
-    /**
-     * 读取单行
-     */
-    String readNewLine() throws FileAccessErrException;
-
     OutputStream getOutputStream(boolean isAppendMode) throws FileAccessErrException;
 
     InputStream getInputStream() throws FileAccessErrException;

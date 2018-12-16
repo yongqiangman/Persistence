@@ -14,7 +14,6 @@
 
 package com.yqman.persistence.file;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +21,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
@@ -74,20 +72,6 @@ public class LocalFile implements IFileVisitor {
             writer.newLine();
             writer.write(value);
             writer.close();
-        } catch (FileNotFoundException e) {
-            throw new FileAccessErrException(e.getMessage());
-        } catch (IOException e) {
-            throw new FileAccessErrException(e.getMessage());
-        }
-    }
-
-    @Override
-    public String readNewLine() throws FileAccessErrException {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(mFile)));
-            String value = reader.readLine();
-            reader.close();
-            return value;
         } catch (FileNotFoundException e) {
             throw new FileAccessErrException(e.getMessage());
         } catch (IOException e) {
